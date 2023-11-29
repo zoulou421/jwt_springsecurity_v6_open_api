@@ -27,6 +27,10 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((authorizeRequests) -> authorizeRequests
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/auth/**")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/v3/api-docs")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/api-docs")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/swagger-ui-custom.html")).permitAll()
+                        .requestMatchers(AntPathRequestMatcher.antMatcher("/swagger-ui/index.html")).permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/**")).authenticated())
                         .sessionManagement((session) -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
